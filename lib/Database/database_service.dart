@@ -10,10 +10,8 @@ class DatabaseService {
   List dbgetlist = [];
   Future<Database> get databaseget async {
     if (database != null) {
-      print("vbvb");
       return database!;
     } else {
-      print("cvcv");
       database = await initDatabase();
       return database!;
     }
@@ -42,17 +40,12 @@ class DatabaseService {
       'mobile': mobile,
       'gender': gender
     });
-    print("insert");
-    print(db);
   }
 
   Future<List<Map<String, dynamic>>> fetchData() async {
     Database db = await databaseget;
     dbgetlist = await db.query('infotable');
-    // dbgetlist.add(dbget);
     dbget = dbgetlist;
-    print("fetch");
-    print(dbgetlist);
     return dbget;
   }
 

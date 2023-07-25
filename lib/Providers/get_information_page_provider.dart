@@ -16,7 +16,6 @@ class GetInformationProvider extends ChangeNotifier {
   bool check = false;
   String id = '';
   postInformation(Function(bool, String) callback) async {
-    print(name.text);
     var url = Uri.parse(
         "https://crudcrud.com/api/3d18a6eebc604d2a806a988ae1be051f/aswin");
     var response = await http.post(url,
@@ -30,11 +29,8 @@ class GetInformationProvider extends ChangeNotifier {
           'gender': gender.text
         }));
     urlDataPost = await jsonDecode(response.body);
-    print(urlDataPost);
     check = true;
     id = urlDataPost["_id"];
-    print("gg");
-    print(id);
     callback(check, id);
     notifyListeners();
   }
