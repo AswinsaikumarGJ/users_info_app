@@ -16,7 +16,6 @@ class GetInformation extends StatefulWidget {
 
 class _GetInformationState extends State<GetInformation> {
   bool insertdataCheck = false;
-  String idget = '';
   DatabaseService databaService = DatabaseService();
   @override
   void initState() {
@@ -24,10 +23,9 @@ class _GetInformationState extends State<GetInformation> {
     databaService.databaseget;
   }
 
-  boolCheck(bool check, String id) {
+  boolCheck(bool check) {
     setState(() {
       insertdataCheck = check;
-      idget = id;
     });
   }
 
@@ -86,15 +84,14 @@ class _GetInformationState extends State<GetInformation> {
             ),
             CustomButton(
               onTap: () async {
-                if (getInformationProvider.name != null &&
-                    getInformationProvider.email != null &&
-                    getInformationProvider.mobile != null &&
-                    getInformationProvider.gender != null) {
+                if (getInformationProvider.name.text != "" &&
+                    getInformationProvider.email.text != "" &&
+                    getInformationProvider.mobile.text != "" &&
+                    getInformationProvider.gender.text != "") {
                   await getInformationProvider.postInformation(boolCheck);
                   if (insertdataCheck == true) {
                     databaService
                         .insertData(
-                            idget,
                             getInformationProvider.name.text,
                             getInformationProvider.email.text,
                             getInformationProvider.mobile.text,
@@ -114,6 +111,14 @@ class _GetInformationState extends State<GetInformation> {
                           MaterialPageRoute(builder: (context) => HomePage()));
                     });
                   }
+                }
+                else{
+                    var snackBar = SnackBar(
+                        backgroundColor: Colors.blue,
+                        duration: Duration(seconds: 1),
+                        content: Text('Please fill all the fields'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
               },
             )

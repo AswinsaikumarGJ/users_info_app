@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // TODO: implement initState
+     databaService.databaseget;
     databaService.fetchData();
     super.initState();
   }
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                                   top: h * 0.03,
                                   left: w * 0.1,
                                   child: Text(
-                                    "Name  :",
+                                    "Name :",
                                     style: TextStyle(fontSize: 20),
                                   )),
                               Positioned(
@@ -85,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                                   top: h * 0.065,
                                   left: w * 0.1,
                                   child: Text(
-                                    "Email   :",
+                                    "Email :",
                                     style: TextStyle(fontSize: 20),
                                   )),
                               Positioned(

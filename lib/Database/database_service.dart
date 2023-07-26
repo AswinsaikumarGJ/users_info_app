@@ -25,16 +25,15 @@ class DatabaseService {
       version: 1,
       onCreate: (Database db, int version) async {
         await db.execute(
-            'CREATE TABLE infotable (id INTEGER PRIMARY KEY,name TEXT,email TEXT,mobile TEXT,gender TEXT)');
+            'CREATE TABLE infotable (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,email TEXT,mobile TEXT,gender TEXT)');
       },
     );
   }
 
-  Future<void> insertData(String id, String name, String email, String mobile,
+  Future<void> insertData( String name, String email, String mobile,
       String gender) async {
     final Database db = await databaseget;
     await db.insert('infotable', {
-      'id': id,
       'name': name,
       'email': email,
       'mobile': mobile,
